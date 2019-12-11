@@ -24,7 +24,7 @@ func main() {
     if err != nil {
         log.Fatalf("Unable to get working directory path: %v", err)
     }
-    log.Println(getFlags(currentDirectory))
+    format.Println(getFlags(currentDirectory))
 }
 
 func getFlags(directory string) string {
