@@ -3,7 +3,6 @@ package main
 import (
     "flag"
     format "fmt"
-    "log"
     "os"
     "strings"
 )
@@ -16,13 +15,10 @@ func init() {
 }
 
 func main() {
-
-    log.Println("Going to target: ", packageName)
-
-
     currentDirectory, err := os.Getwd()
     if err != nil {
-        log.Fatalf("Unable to get working directory path: %v", err)
+        //log.Fatalf("Unable to get working directory path: %v", err)
+        return
     }
     format.Println(getFlags(currentDirectory))
 }

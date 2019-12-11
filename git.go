@@ -195,7 +195,7 @@ func (git git) extractBranchName() (string, error) {
 
 // [INTERNAL] Extract author of the latest commit
 func (git git) extractCommitAuthor() (string, error) {
-    result, err := git.exec("log", "--format=%ae", format.Sprintf("%s^!", git.LatestCommitFullHash()))
+    result, err := git.exec("log", "--format=%ae", git.LatestCommitFullHash(), "|", "tail", "-n 1")
     if err != nil {
         return "undefined", err
     }
