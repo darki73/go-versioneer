@@ -7,9 +7,11 @@ import (
     "strings"
 )
 
+var cvsName     string
 var packageName string
 
 func init() {
+    flag.StringVar(&packageName, "cvs", "git", "Set the cvs type for the ")
     flag.StringVar(&packageName, "package", "", "Set the package which is responsible for version management")
     flag.Parse()
 }
@@ -24,7 +26,19 @@ func main() {
 }
 
 func getFlags(directory string) string {
-    repositoryInformation := git{ directory: directory }
+    var repositoryInformation Handler
+    switch strings.ToLower(cvsName) {
+        case "svn":
+            //repositoryInformation = svn { directory: directory }
+            panic("SVN Handler is not implemented")
+        case "mercurial":
+            //repositoryInformation = mercurial { directory: directory }
+            panic("Mercurial Handler is not implemented")
+        case "git":
+        default:
+            repositoryInformation = git { directory: directory }
+            break
+    }
     if packageName == "" {
         packageName = "main"
     }
